@@ -24,6 +24,15 @@ def get_members():
     response = {"members": members_list}
     return response
 
+
+@app.route('/movies')
+def get_movies():
+    cursor = mydb.cursor(dictionary=True)  # Use dictionary cursor for JSON results
+    cursor.execute("SELECT * FROM movies")
+    movies = cursor.fetchall()
+    cursor.close()
+    return jsonify(movies)
+
 if __name__ == "__main__":
     # Run the Flask app on the local development server
     app.run(debug=True)
