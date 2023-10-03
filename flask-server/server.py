@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify , request
 import mysql.connector
 
 
@@ -32,6 +32,20 @@ def get_movies():
     movies = cursor.fetchall()
     cursor.close()
     return jsonify(movies)
+
+
+# Route for movie retrieval by genre
+@app.route("/movies", methods=["GET"])
+def get_movies_by_genre():
+    genre = request.args.get("genre")  # Get the genre from the query parameters
+
+    cursor = mydb.cursor(dictionary=True)  # Use dictionary cursor for JSON results
+    cursor.execute("SELECT * FROM movies WHERE genre = %s", (genre,))
+    movies = cursor.fetchall()
+    cursor.close()
+
+    return jsonify(movies)
+
 
 if __name__ == "__main__":
     # Run the Flask app on the local development server

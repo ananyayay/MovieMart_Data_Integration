@@ -1,9 +1,8 @@
 /* Home.css */
 .landing-page {
-    background-image: url("../Images/mmart.jpg");
-    background-size: cover;
-    background-position: center;
+    background-image: url("../Images/m_mart.jpg");
     height: 100vh;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -72,3 +71,6 @@
     margin-top: 20px;
   }
   
+  .black-background{
+    color: white;
+  }
