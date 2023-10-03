@@ -1,0 +1,74 @@
+/* Home.css */
+.landing-page {
+    background-image: url("../Images/mmart.jpg");
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .overlay {
+    background: rgba(0, 0, 0, 0.6); /* Semi-transparent overlay */
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    color: white;
+    width: 100%; 
+  }
+  
+  
+  h1 {
+    font-size: 24px;
+  }
+
+  .header {
+    text-align: center;
+  }
+
+  
+.title {
+    font-size: 96px; /* Adjust the font size as needed */
+    margin-bottom: 10px;
+  }
+  
+  .subtitle {
+    font-size: 38px; /* Adjust the font size as needed */
+  }
+
+  h2 {
+    font-size: 35px; /* Adjust the font size as needed */
+    margin-top: 20px;
+  }
+  
+  form {
+    margin-top: 10px;
+  }
+  
+  input {
+    padding: 12px; /* Increase padding for spacing inside the input box */
+    width: 500px; /* Increase width to your preferred size */
+    border: none;
+    border-radius: 5px;
+  }
+  
+  button {
+    padding: 10px 20px;
+    background-color: #007bff; /* Change to your preferred button color */
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    margin-left: 10px;
+  }
+  
+  button:hover {
+    background-color: #0056b3; /* Change to the hover color you prefer */
+  }
+  
+  form {
+    margin-top: 20px;
+  }
+  
