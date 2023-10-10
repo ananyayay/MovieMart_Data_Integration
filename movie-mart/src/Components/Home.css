@@ -1,14 +1,51 @@
 /* Home.css */
+
+/* Enable scrolling for the entire page
+body {
+  overflow: auto;
+  overflow-y: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+} */
+
+
+
+
 .landing-page {
-    background-image: url("../Images/m_mart.jpg");
-    height: 100vh;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
+  overflow-y: auto;
+  overflow-x: auto;
+
   
+  height: 200vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content:flex-start; 
+  background-color: black;
+ 
+}
+
+.landing-page::-webkit-scrollbar {
+  display: none;
+}
+
+
+
+.movie-display {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.genre-prompt {
+  background-image: url("../Images/m_mart.jpg");
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
   .overlay {
     background: rgba(0, 0, 0, 0.6); /* Semi-transparent overlay */
     padding: 20px;
@@ -55,7 +92,7 @@
   
   button {
     padding: 10px 20px;
-    background-color: #007bff; /* Change to your preferred button color */
+    background-color: #2e0c0c; /* Change to your preferred button color */
     border: none;
     border-radius: 5px;
     color: white;
@@ -64,7 +101,7 @@
   }
   
   button:hover {
-    background-color: #0056b3; /* Change to the hover color you prefer */
+    background-color: #2e0c0c; /* Change to the hover color you prefer */
   }
   
   form {
@@ -74,3 +111,4 @@
   .black-background{
     color: white;
   }
+

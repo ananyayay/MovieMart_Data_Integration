@@ -34,7 +34,7 @@ def get_movies():
     return jsonify(movies)
 
 
-# Route for movie retrieval by genre
+# Route for movies retrieval by genre
 @app.route("/movies", methods=["GET"])
 def get_movies_by_genre():
     genre = request.args.get("genre")  # Get the genre from the query parameters
@@ -45,6 +45,20 @@ def get_movies_by_genre():
     cursor.close()
 
     return jsonify(movies)
+
+@app.route('/top_movies')
+def get_top_movies():
+    genre = request.args.get('genre')
+    cursor = mydb.cursor(dictionary=True)
+    
+    # Modify the SQL query to retrieve top 10 movies based on genre
+    query = "SELECT Title FROM GLOBAL_MOVIE_GENRE WHERE Genre = %s LIMIT 10"
+    
+    cursor.execute(query, (genre,))
+    top_movies = cursor.fetchall()
+    cursor.close()
+    
+    return jsonify(top_movies)
 
 
 if __name__ == "__main__":
