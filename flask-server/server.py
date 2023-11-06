@@ -108,6 +108,21 @@ def getMovieInfo():
     
     return jsonify(top_movies)
    
+@app.route('/getAmazonProducts', methods=['GET'])
+@cross_origin()
+def get_amazon_products():
+    try:
+
+        # Query to select 10 random products
+        select_query = f'SELECT * FROM AmazonProducts ORDER BY RAND() LIMIT 18'
+        cursor = mydb.cursor(dictionary=True)
+        cursor.execute(select_query)
+        products = cursor.fetchall()
+
+        return jsonify(products)
+
+    except Exception as e:
+        return jsonify({'error': e})
 
 
 if __name__ == "__main__":

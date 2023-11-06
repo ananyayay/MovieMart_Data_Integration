@@ -1,5 +1,3 @@
-Todo
-- Integrate User profile
-- Integrate Preferances
-- Integrate Amazon Products/Movie merchandise
+Todo        
+- Dynamically Add/Remove from View (make python files corresponding)
 - Make it sundar (optional/wanna delegate/wanna postpone)

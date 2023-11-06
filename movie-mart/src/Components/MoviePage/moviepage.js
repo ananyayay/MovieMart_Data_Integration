@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from "axios"; // Import axios for making HTTP requests
+import ListAmazonProducts from '../AmazonPage/AmazonProducts';
 
 const MoviePage = () => {
   const { title } = useParams();
@@ -36,10 +37,13 @@ const MoviePage = () => {
   const renderMovieInfo = () => {
     if (movieInfo) {
       return (
+        <div>
         <div className="movie-info">
           <img src={"https://image.tmdb.org/t/p/original/" +movieInfo[0].image} alt={movieInfo.name} width={500} height={700} />
           <p>Title: {movieInfo[0].Title}</p>
           <p>Synopsis: {movieInfo[0].overview}</p>
+        </div>
+        <ListAmazonProducts/>
         </div>
       );
     }
