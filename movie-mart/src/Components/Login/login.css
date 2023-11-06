@@ -1,0 +1,96 @@
+/* Login Container */
+.login-container {
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  /* Login Box */
+  .login-box {
+    background: rgba(192, 192, 192, 0.7);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: 300px;
+  }
+  
+  /* Heading */
+  h2 {
+    color: white;
+  }
+  
+  /* Form Group */
+  .form-group {
+    margin: 10px 0;
+    text-align: left;
+  }
+  
+  /* Labels */
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  /* Input Fields */
+  input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  /* Error Text */
+  .error-text {
+    color: red;
+    font-size: 12px;
+  }
+  
+  /* Password Input Field */
+  .password-input {
+    display: flex;
+    align-items: center;
+  }
+  
+  .password-input input {
+    flex: 1;
+  }
+  
+  .password-toggle {
+    cursor: pointer;
+    user-select: none;
+    font-size: 18px;
+  }
+  
+  .password-toggle.show {
+    color: #0073e6;
+  }
+  
+  /* Login Button */
+  button {
+    background: #0073e6;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  button:hover {
+    background: #005bb9;
+    font-weight: bold;
+  }
+  
+  /* Signup Link */
+  p {
+    color: black;
+    font-size: 14px;
+  }
+  
+  p a {
+    color: red;
+    text-decoration: none;
+  }
+  
