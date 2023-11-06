@@ -61,7 +61,8 @@ CREATE OR REPLACE VIEW  GLOBAL_MOVIE_GENRE_ADDITION AS(
 	UNION
 
     SELECT
-        newSource.MovieID,
+        newSource.MovieIDFirst,
+        newSource.MovieIDLast,
         newSource.Title,
         newSource.Genre
     FROM

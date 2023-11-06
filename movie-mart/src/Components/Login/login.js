@@ -16,10 +16,12 @@ const Login = () => {
     return re.test(email);
   };
 
-  const handleLogin = () => {
+  const handleLogin = (e) => {
+    e.preventDefault();
     if (!validateEmail(email)) {
       setInvalidEmail(true);
     } else {
+      
       // Perform login logic here
       // You can send a request to your backend to authenticate the user
     }

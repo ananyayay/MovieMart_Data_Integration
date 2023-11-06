@@ -60,3 +60,4 @@ CREATE OR REPLACE VIEW  GLOBAL_MOVIE_GENRE AS(
 
 );
 Select * from GLOBAL_MOVIE_GENRE;
+Select * from GLOBAL_MOVIE_GENRE where Title = "sds";

@@ -3,8 +3,8 @@ import React, { useState, useEffect } from "react";
 import "./Home.css";
 import axios from "axios"; // Import axios for making HTTP requests
 import MovieCard from "./MovieCard"; 
+import { Link } from 'react-router-dom';
 
-import mmartImage from "../Images/mmart.jpg"; // Adjust the path as needed
 
 
 function Home() {
@@ -23,30 +23,29 @@ function Home() {
       // Only fetch movies when the genre is not empty
       setIsLoadingMovies(true); // Set loading state to true
 
-      console.log("Message sent")
+  
       console.log(genre)
 
-      axios
-        // .get(" http://127.0.0.1:5000/members")
-        .get(" api.business.amazon.com/products/2020-08-26/products")
-        .then((response) => {
-          console.log(response.data); // Set loading state to false
-        })
-        .catch((error) => {
-          console.error("Error:", error.message);
-          setIsLoadingMovies(false); // Set loading state to false in case of an error
-        });
-      // Fetch top_movies data based on the genre
       // axios
-      //   .get("/top_movies", { params: { genre } })
+      //   .get(" http://127.0.0.1:5000/members")
       //   .then((response) => {
-      //     setMovies(response.data); // Update movies state with fetched data
-      //     setIsLoadingMovies(false); // Set loading state to false
+      //     console.log(response.data); // Set loading state to false
       //   })
       //   .catch((error) => {
       //     console.error("Error:", error.message);
       //     setIsLoadingMovies(false); // Set loading state to false in case of an error
       //   });
+      // Fetch top_movies data based on the genre
+      axios
+        .get("http://127.0.0.1:5000/movies", { params: { genre } })
+        .then((response) => {
+          setMovies(response.data); // Update movies state with fetched data
+          setIsLoadingMovies(false); // Set loading state to false
+        })
+        .catch((error) => {
+          console.error("Error:", error.message);
+          setIsLoadingMovies(false); // Set loading state to false in case of an error
+        });
     }
   };
 
@@ -56,12 +55,12 @@ function Home() {
         <div className="overlay">
           <header className="header">
             <h1 className="title">The Movie Mart</h1>
-            <p className="subtitle">Your One-Stop Movie Shop</p>
+            <p className="subtitle" style={{color:"white"}}>Your One-Stop Movie Shop</p>
           </header>
         </div>
 
         <div className="black-background">
-          <h2>What Genre are you interested in?</h2>
+          <h2 >What Genre are you interested in?</h2>
           <form onSubmit={handleSubmit}>
               <input
                 type="text"
@@ -98,8 +97,11 @@ function Home() {
             <ul className="movies-grid">
               {movies.map((movie, index) => (
                 <div key={index} className="movie-card">
-                <img src={mmartImage} alt="Filler" />
-                <p>{movie.Title}</p>
+                <Link to={`/movie/${movie.Title}`}>
+                <img src={"https://image.tmdb.org/t/p/w500/" + movie.image} alt="Filler" />
+                <p style={{color:"white", fontWeight:"bold"}}>{movie.Title}</p>
+                </Link>
+               
               </div>
               ))}
             </ul>

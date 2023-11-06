@@ -5,6 +5,7 @@ import Home from './Components/Home';
 import Login from './Components/Login/login';
 import Navbar from './Components/Navbar/navbar';
 import Signup from './Components/Login/signup';
+import MoviePage from './Components/MoviePage/moviepage';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/login" element ={<Login />}/>
             <Route path="/signup" element = {<Signup />}/>
+            <Route path="/movie/:title" element={<MoviePage />} />
           </Routes>
         </main>
       </div>

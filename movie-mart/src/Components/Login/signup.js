@@ -1,6 +1,8 @@
 import React,{useState} from "react";
+import axios from "axios";
 const Signup =() => {
     const [email, setEmail] = useState("");
+    const [username,setUserName] = useState("");
     const [password, setPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
     const [invalidEmail, setInvalidEmail] = useState(false);
@@ -14,15 +16,24 @@ const Signup =() => {
         return re.test(email);
       };
     
-      const handleLogin = () => {
+      const handleSignUp = (e) => {
+        e.preventDefault();
         if (!validateEmail(email)) {
           setInvalidEmail(true);
         } else {
-          // Perform login logic here
-          // You can send a request to your backend to authenticate the user
-        }
-      };
-  
+         console.log("Everything is cool");
+         axios
+         .get("http://127.0.0.1:5000/signup", { params: { username,email,password } })
+         .then((response) => {
+           console.log(response.data);
+         })
+         .catch((error) => {
+           console.error("Error:", error.message);
+           
+         });
+     }
+   };
+       
 return(
     <div>
         <div className="login-container">
@@ -39,12 +50,12 @@ return(
             {invalidEmail && <span className="error-text">Incorrect email</span>}
           </div>
           <div className="form-group">
-            <label>Name</label>
+            <label>UserName</label>
             <div className="password-input">
               <input
-                type={showPassword ? "text" : "password"}
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                
+                value={username}
+                onChange={(e) => setUserName(e.target.value)}
               />
               
             </div>
@@ -88,7 +99,7 @@ return(
             </div>
             
           </div>
-          <button onClick={handleLogin}>Create Account</button>
+          <button onClick={handleSignUp}>Create Account</button>
         </form>
       </div>
     </div>
