@@ -24,7 +24,7 @@ mydb = mysql.connector.connect(
     host="localhost",
     database="iia_project",
     user="root",
-    password="creates"
+    password="Haider@2001"
 )
 
 mycursor = mydb.cursor()
@@ -36,7 +36,7 @@ for file_name, table_name in dataset_files.items():
     
     print(f"Processing file: {file_name}...")
 
-    data_file_path = data_file_path+"\data.tsv"
+    data_file_path = data_file_path
 
     with open(data_file_path, "r", encoding="utf-8") as tsv_file:
         tsv_reader = csv.reader(tsv_file, delimiter="\t")

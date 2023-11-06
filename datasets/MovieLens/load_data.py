@@ -7,16 +7,22 @@ mydb = mysql.connector.connect(
     host="localhost",
     database="iia_project", 
     user="root",
-    password="creates"  
+    password="Haider@2001"  
 )
 
 mycursor = mydb.cursor()
 
 # Define the paths to your CSV files
+# csv_files = {
+#     "movies.csv": "MovieLens_movie",
+#     "ratings.csv": "MovieLens_ratings",
+#     "tags.csv": "MovieLens_tags"
+# }
+
 csv_files = {
-    "movies.csv": "MovieLens_movies",
-    "ratings.csv": "MovieLens_ratings",
-    "tags.csv": "MovieLens_tags"
+    "movies.csv": "newSource_movie",
+    "ratings.csv": "newSource_ratings",
+    "tags.csv": "newSource_tags"
 }
 
 # Get the current directory (where the script is located)
@@ -31,9 +37,9 @@ for file_name, table_name in csv_files.items():
     
     print(f"Loading data from {csv_file_path} into table {table_name}...")
 
-    if(table_name != 'MovieLens_movies'):
+    if(table_name != 'MovieLens_movie' and table_name !="newSource_movie"):
         continue
-
+    # print("Coming here")
     with open(csv_file_path, "r", encoding="utf-8") as csv_file:
         csv_reader = csv.reader(csv_file)
         headers = next(csv_reader)  # Read the headers
@@ -49,6 +55,7 @@ for file_name, table_name in csv_files.items():
 
             values = tuple(row)
             try:
+                # print(insert_query,values)
                 mycursor.execute(insert_query, values)
             except mysql.connector.Error as err:
                 print(f"Error inserting data into {table_name}: {err}")

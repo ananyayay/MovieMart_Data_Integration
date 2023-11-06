@@ -7,7 +7,7 @@ mydb = mysql.connector.connect(
     host="localhost",
     database="iia_project",
     user="root",
-    password="creates"
+    password="Haider@2001"
 )
 
 mycursor = mydb.cursor()
@@ -29,7 +29,7 @@ for file_name, table_name in xlsx_files.items():
 
     # Read the XLSX file using pandas
     df = pd.read_excel(xlsx_file_path)
-
+    
     # Prepare the SQL INSERT statement without quotes around placeholders
     insert_query = f"INSERT INTO {table_name} ({', '.join(df.columns)}) VALUES ({', '.join(['%s'] * len(df.columns))})"
 
@@ -39,7 +39,7 @@ for file_name, table_name in xlsx_files.items():
         if count == 1001:  # For demo purposes, loading the first 1000 rows
             break
 
-        values = tuple(row)
+        values = [None if pd.isna(val) else val for val in row]
         try:
             mycursor.execute(insert_query, values)
         except mysql.connector.Error as err:

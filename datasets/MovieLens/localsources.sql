@@ -17,9 +17,8 @@ CREATE TABLE MovieLens_rating (
     movieId INT,
     rating FLOAT,
     timestamp INT,
-    PRIMARY KEY (userId, movieId),
-    FOREIGN KEY (userId) REFERENCES users(userId),
-    FOREIGN KEY (movieId) REFERENCES movies(movieId)
+    PRIMARY KEY (userId, movieId)
+   
 );
 
 -- Create Table for Tags
@@ -28,7 +27,6 @@ CREATE TABLE MovieLens_tags (
     movieId INT,
     tag VARCHAR(255),
     timestamp INT,
-    PRIMARY KEY (userId, movieId, tag),
-    FOREIGN KEY (userId) REFERENCES users(userId),
-    FOREIGN KEY (movieId) REFERENCES movies(movieId)
+    PRIMARY KEY (userId, movieId, tag)
+   
 );

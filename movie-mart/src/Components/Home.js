@@ -26,17 +26,27 @@ function Home() {
       console.log("Message sent")
       console.log(genre)
 
-      // Fetch top_movies data based on the genre
       axios
-        .get("/top_movies", { params: { genre } })
+        // .get(" http://127.0.0.1:5000/members")
+        .get(" api.business.amazon.com/products/2020-08-26/products")
         .then((response) => {
-          setMovies(response.data); // Update movies state with fetched data
-          setIsLoadingMovies(false); // Set loading state to false
+          console.log(response.data); // Set loading state to false
         })
         .catch((error) => {
           console.error("Error:", error.message);
           setIsLoadingMovies(false); // Set loading state to false in case of an error
         });
+      // Fetch top_movies data based on the genre
+      // axios
+      //   .get("/top_movies", { params: { genre } })
+      //   .then((response) => {
+      //     setMovies(response.data); // Update movies state with fetched data
+      //     setIsLoadingMovies(false); // Set loading state to false
+      //   })
+      //   .catch((error) => {
+      //     console.error("Error:", error.message);
+      //     setIsLoadingMovies(false); // Set loading state to false in case of an error
+      //   });
     }
   };
 

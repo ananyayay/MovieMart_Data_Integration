@@ -1,15 +1,17 @@
 from flask import Flask, jsonify , request
+from flask_cors import CORS, cross_origin
 import mysql.connector
 
 
 # Create a Flask web application
 app = Flask(__name__)
+cors = CORS(app)
 
 mydb = mysql.connector.connect(
     host="localhost",
     database="iia_project",
     user="root",
-    password="creates"
+    password="Haider@2001"
 )
 
 mycursor = mydb.cursor()
@@ -19,7 +21,9 @@ mycursor = mydb.cursor()
 members_list = ["Alice", "Bob", "Charlie", "David", "Eve"]
 
 # Define a route that returns JSON with a "members" key and a list of members
+
 @app.route("/members")
+@cross_origin()
 def get_members():
     response = {"members": members_list}
     return response

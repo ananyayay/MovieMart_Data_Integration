@@ -1,1 +1,2 @@
-SELECT * FROM MovieLens_movies;
+SELECT * FROM MovieLens_movie;
+Select * from newSource_movie;
