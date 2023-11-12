@@ -124,6 +124,76 @@ def get_amazon_products():
     except Exception as e:
         return jsonify({'error': e})
 
+@app.route('/getAllGenres', methods=['GET'])
+@cross_origin()
+def get_all_genres():
+    try:
+
+        # Query to select 10 random products
+        select_query = f'SELECT GENRE FROM TMDB_GENRE'
+        cursor = mydb.cursor(dictionary=True)
+        cursor.execute(select_query)
+        products = cursor.fetchall()
+
+        return jsonify(products)
+
+    except Exception as e:
+        return jsonify({'error': e})
+
+@app.route('/getAmazonProductDetail', methods=['GET'])
+@cross_origin()
+def getAmazonProductDetail():
+    try:
+        UniqId = request.args.get('UniqId')
+        # Query to select 10 random products
+        select_query = "SELECT * FROM AmazonProducts where UniqId = %s"
+        values = (UniqId,)
+        cursor = mydb.cursor(dictionary=True)
+        cursor.execute(select_query,values)
+        products = cursor.fetchall()
+
+        return jsonify(products)
+
+    except Exception as e:
+        return jsonify({'error': e})
+
+
+@app.route('/login',methods=["GET"])
+@cross_origin()
+def userLogin():
+    email = request.args.get('email')
+    password = request.args.get('password')
+    cursor = mydb.cursor(dictionary=True)
+    print("Invoked sql ")
+    # Modify the SQL query to retrieve top 10 movies based on genre
+    try:
+        # Use placeholders in the SQL query
+        query = "SELECT * FROM user WHERE EMAILID = %s"
+        values = (email,)
+
+        cursor.execute(query, values)
+        resp = cursor.fetchall()
+        cursor.close()
+        if (len(resp) == 0):
+            response = {"response": "501"}
+            return jsonify(response)
+        dbPassword = resp[0]['PASS']
+        if (dbPassword == password):
+            response = {"response": "200", "user":resp[0]["USERNAME"]}
+            return jsonify(response)
+        else:
+            response = {"response": "403"}
+            return jsonify(response)
+    except mysql.connector.Error as err:
+        print(f"Error: {err}")
+        response = {"response": "401"}  # Error
+    finally:
+        cursor.close()
+
+    return jsonify(response)
+
+
+
 
 if __name__ == "__main__":
     # Run the Flask app on the local development server

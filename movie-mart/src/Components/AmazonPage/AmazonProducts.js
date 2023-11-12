@@ -1,5 +1,7 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import axios from 'axios';
+import AmazonProductPage from './AmazonProductPage';
+import { Link } from 'react-router-dom';
 import "./AmazonProducts.css";
 
 function ListAmazonProducts() {
@@ -50,11 +52,12 @@ function ListAmazonProducts() {
               margin: '10px',
             }}
           >
+            <Link to={`/product/${product.UniqId}`}>
             <img src={memoizedImageLinks[index]} width={200} height={300}/>
             <h3>{product.ProductName}</h3>
             <p>Price: ${product.SellingPrice}</p>
             <p>Category: {product.Category}</p>
-            {/* Add more product details as needed */}
+            </Link>
           </div>
         ))}
       </div>

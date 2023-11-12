@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import "./login.css"; 
+import { useAuth } from "./AuthContext";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [invalidEmail, setInvalidEmail] = useState(false);
-
+  const {login, user} = useAuth();
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
@@ -21,14 +22,16 @@ const Login = () => {
     if (!validateEmail(email)) {
       setInvalidEmail(true);
     } else {
-      
+      login(email,password);
       // Perform login logic here
       // You can send a request to your backend to authenticate the user
     }
   };
 
   return (
-    <div className="login-container">
+    <div>
+      {!user?
+      <div className="login-container">
       <div className="login-box">
         <h2>Login</h2>
         <form>
@@ -66,6 +69,9 @@ const Login = () => {
         </p>
       </div>
     </div>
+
+       :<h2 style={{color:"black"}}>Welcome, {user}!</h2>}
+        </div>
   );
 };
 

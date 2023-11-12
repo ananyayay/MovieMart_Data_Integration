@@ -112,3 +112,23 @@ body {
     color: white;
   }
 
+
+  .button-container {
+    display: flex;
+    flex-wrap: wrap; /* Allow buttons to wrap to the next line */
+    background-color: black;
+  }
+  
+  .genre-button {
+    background-color: black;
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 20px;
+    transition: background-color 0.3s;
+  }
+  
+  .genre-button:hover {
+    background-color: #800000; /* Crimson or your desired color */
+  }
+  

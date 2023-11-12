@@ -4,20 +4,42 @@ import "./Home.css";
 import axios from "axios"; // Import axios for making HTTP requests
 import MovieCard from "./MovieCard"; 
 import { Link } from 'react-router-dom';
-
+import { useAuth } from "./Login/AuthContext";
 
 
 function Home() {
+  const {user} = useAuth();
   const [genre, setGenre] = useState("");
+  const [genreList, setGenreList] = useState([]);
   const [submittedGenre, setSubmittedGenre] = useState(""); 
 
   const [isLoadingMovies, setIsLoadingMovies] = useState(false); // Initialize as false
   const [movies, setMovies] = useState([]); // Initialize as an empty array
+  
+  useEffect(() => {
+    // Define the API endpoint for fetching movie information
+    const apiUrl = `http://127.0.0.1:5000/getAllGenres`;
+    // console.log("Came here");
+    // Fetch movie data from the API
+    axios
+        .get(apiUrl)
+      .then((response) => {
+        handleGenre(response.data);
+        console.log(genreList);
+      })
+      .catch((error) => console.error('Error fetching data:', error));
+  },[]);
 
-
+  const handleGenre= (array) => {
+      const genreArray = [];
+      for (var i =0; i < array.length;i++){
+        genreArray.push(array[i]["GENRE"]);
+      }
+      setGenreList(genreArray);
+  }
   const handleSubmit = (e) => {
     
-    e.preventDefault();
+    // e.preventDefault();
     if (genre) {
       
       // Only fetch movies when the genre is not empty
@@ -61,7 +83,7 @@ function Home() {
 
         <div className="black-background">
           <h2 >What Genre are you interested in?</h2>
-          <form onSubmit={handleSubmit}>
+          {/* <form onSubmit={handleSubmit}>
               <input
                 type="text"
                 placeholder="Enter genre"
@@ -69,11 +91,27 @@ function Home() {
                 onChange={(e) => setGenre(e.target.value)}
               />
               <button type="submit">Submit</button>
-            </form>
+            </form> */}
           
         </div>
 
       </div>
+        
+      <div className="button-container">
+  {genreList.map((genre) => (
+    <div key={genre}>
+      <button
+        className="genre-button"
+        onClick={() => {
+          setGenre(genre);
+          handleSubmit();
+        }}
+      >
+        {genre}
+      </button>
+    </div>
+  ))}
+</div>
 
 
       <div className="movie-display">
@@ -107,7 +145,7 @@ function Home() {
             </ul>
           )}
         </div>
-
+          {!user ? <h2>Please Login</h2>: <h2>Welcome {user}!</h2>}
       </div>
 
     </div>
