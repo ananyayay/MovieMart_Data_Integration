@@ -58,7 +58,7 @@ def get_top_movies():
     cursor = mydb.cursor(dictionary=True)
     
     # Modify the SQL query to retrieve top 10 movies based on genre
-    query = "SELECT Title FROM GLOBAL_MOVIE_GENRE WHERE Genre = %s LIMIT 10"
+    query = "SELECT Title FROM GLOBAL_MOVIE_GENRE WHERE Genre = %s and title = \"live demoo\" LIMIT 10"
     
     cursor.execute(query, (genre,))
     top_movies = cursor.fetchall()

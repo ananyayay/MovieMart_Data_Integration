@@ -41,7 +41,7 @@ CREATE TABLE IMDB_title_basics (
     runtimeMinutes INT,
     genres VARCHAR(255)
 );
-
+select * from IMDB_title_basics;
 CREATE TABLE IMDB_title_crew (
     tconst VARCHAR(20) PRIMARY KEY,
     directors TEXT,

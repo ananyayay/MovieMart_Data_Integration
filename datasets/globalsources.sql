@@ -67,5 +67,20 @@ FROM GLOBAL_MOVIE_GENRE
 WHERE Title LIKE '%Harry%'
 GROUP BY MovieID;
 
+select * from productMovie;
+Select * from productForMovie ;
 
+CREATE OR REPLACE VIEW productViewFinal AS
+SELECT
+    pm.IMDBID,
+    pm.productName,
+    pm.productURL,
+    pm.productImage,
+    tb.primaryTitle AS movieTitle
+FROM
+    productMovie pm
+JOIN
+    IMDB_title_basics tb ON pm.IMDBID = tb.tconst;
+    
+    Select * from productViewFinal;
 
