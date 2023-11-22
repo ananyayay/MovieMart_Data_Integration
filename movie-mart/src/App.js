@@ -7,6 +7,7 @@ import Navbar from './Components/Navbar/navbar';
 import Signup from './Components/Login/signup';
 import MoviePage from './Components/MoviePage/moviepage';
 import AmazonProductPage from './Components/AmazonPage/AmazonProductPage';
+import MoviePageQueries from './Components/MoviePage/moviepageQueries';
 import { AuthProvider } from './Components/Login/AuthContext';
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
             <Route path="/signup" element = {<Signup />}/>
             <Route path="/movie/:title" element={<MoviePage />} />
             <Route path="/product/:UniqId" element={<AmazonProductPage />} />
+            <Route path="/queries/:title" element={<MoviePageQueries/>}/>
           </Routes>
         </main>
       </div>

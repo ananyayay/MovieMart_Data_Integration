@@ -20,9 +20,9 @@ mycursor = mydb.cursor()
 # }
 
 csv_files = {
-    "movies.csv": "newSource_movie",
-    "ratings.csv": "newSource_ratings",
-    "tags.csv": "newSource_tags"
+    "movies.csv": "MovieLens_movie",
+    "ratings.csv": "MovieLens_rating",
+    "tags.csv": "MovieLens_tags"
 }
 
 # Get the current directory (where the script is located)

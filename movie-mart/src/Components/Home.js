@@ -145,7 +145,7 @@ function Home() {
             </ul>
           )}
         </div>
-          {!user ? <h2>Please Login</h2>: <h2>Welcome {user}!</h2>}
+          {!user ? <h2>Please Login</h2>: <h2></h2>}
       </div>
 
     </div>

@@ -3,6 +3,14 @@
     padding: 10px 0;
   }
   
+  .logo {
+    color: white;
+    font-size: 24px;
+    margin-left: 25px;
+    font-weight: bold;
+    text-decoration: none;
+  }
+  
 
   .navbar ul {
     list-style: none;

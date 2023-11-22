@@ -107,6 +107,24 @@ def getMovieInfo():
     cursor.close()
     
     return jsonify(top_movies)
+
+
+@app.route("/getSimilarMovies",methods=["GET"])
+@cross_origin()
+def getSimilarMovies():
+    title = request.args.get('title')
+    cursor = mydb.cursor(dictionary=True)
+
+    # Corrected the SQL query and added proper escaping
+    query = "SELECT * FROM GLOBAL_MOVIE_GENRE WHERE Title LIKE %s"
+    # Ensure '%' is included in the parameter value
+    values = (f"%{title}%",)
+
+    cursor.execute(query, values)
+    top_movies = cursor.fetchall()
+    cursor.close()
+
+    return jsonify(top_movies)
    
 @app.route('/getAmazonProducts', methods=['GET'])
 @cross_origin()
@@ -114,7 +132,7 @@ def get_amazon_products():
     try:
 
         # Query to select 10 random products
-        select_query = f'SELECT * FROM AmazonProducts ORDER BY RAND() LIMIT 18'
+        select_query = f'SELECT * FROM AmazonProducts ORDER BY RAND() LIMIT 6'
         cursor = mydb.cursor(dictionary=True)
         cursor.execute(select_query)
         products = cursor.fetchall()

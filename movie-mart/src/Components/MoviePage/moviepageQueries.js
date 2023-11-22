@@ -4,7 +4,7 @@ import axios from "axios"; // Import axios for making HTTP requests
 import ListAmazonProducts from '../AmazonPage/AmazonProducts';
 import { Link } from 'react-router-dom';
 
-const MoviePage = () => {
+const MoviePageQueries = () => {
   const styles = {
     container: {
       display: 'flex',
@@ -46,6 +46,24 @@ const MoviePage = () => {
   
   const { title } = useParams();
   const [movieInfo, setMovieInfo] = useState(null);
+  const [movies, setMovies] = useState([]); // Initialize as an empty array
+  const [isLoadingMovies, setIsLoadingMovies] = useState(false); // Initialize as false
+
+  const getSimilarMovies = () => {
+    // Define the API endpoint for fetching movie information
+    const apiUrl = `http://127.0.0.1:5000/getSimilarMovies`;
+    // console.log("Came here");
+    // Fetch movie data from the API
+    
+    axios
+    .get(apiUrl, { params:  { "genre":movieInfo[0].Genre }})
+      .then((response) => {
+        setMovies(response.data);
+        setIsLoadingMovies(false); 
+        console.log("Similar Movie Data",response.data)
+      })
+      .catch((error) => console.error('Error fetching data:', error));
+  };
 
   const loadPage = () => {
     const apiUrl = `http://127.0.0.1:5000/getMovieDetails`;
@@ -62,7 +80,7 @@ const MoviePage = () => {
   useEffect(() => {
     // Define the API endpoint for fetching movie information
     const apiUrl = `http://127.0.0.1:5000/getMovieDetails`;
-    console.log("Came here");
+    console.log("Came here for movie Detail");
     // Fetch movie data from the API
     axios
         .get(apiUrl, { params: { title } })
@@ -91,8 +109,27 @@ const MoviePage = () => {
           <p style={styles.synopsis}>{movieInfo[0].overview}</p>
         </div>
       </div>
-      <button><Link to={`/queries/${movieInfo[0].Title}`}> Queries </Link></button>
-      <ListAmazonProducts />
+            <button onClick={getSimilarMovies}>Filter similar movies</button>
+            <div className="movies-container">
+          {isLoadingMovies ? (
+            <p></p>
+          ) : (
+            <ul className="movies-grid">
+              {movies.map((movie, index) => (
+                <div key={index} className="movie-card">
+                <Link to={`/movie/${movie.Title}`}>
+                <img src={"https://image.tmdb.org/t/p/w500/" + movie.image} alt="Filler" />
+                <p style={{color:"white", fontWeight:"bold"}}>{movie.Title}</p>
+                </Link>
+               
+              </div>
+              ))}
+            </ul>
+          )}
+        </div>
+            <div>Audience Feedback about the movie</div>
+            <div>Yearwise summary of ratings across different years</div>
+            <div>Popular movies that made a loss in the theater</div>
     </div>
 
       );
@@ -109,4 +146,4 @@ const MoviePage = () => {
   );
 };
 
-export default MoviePage;
+export default MoviePageQueries;

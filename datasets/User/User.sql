@@ -9,3 +9,4 @@ CREATE TABLE user (
     PASS VARCHAR(255)
 );
 
+select * from user;

@@ -57,7 +57,15 @@ CREATE OR REPLACE VIEW  GLOBAL_MOVIE_GENRE AS(
             WHERE
                 genres IS NOT NULL
         ) AS MovieLens
-
+    
+    -- next source
 );
 Select * from GLOBAL_MOVIE_GENRE;
-Select * from GLOBAL_MOVIE_GENRE where Title = "sds";
+
+SELECT MovieID, MIN(Title) AS Title
+FROM GLOBAL_MOVIE_GENRE
+WHERE Title LIKE '%Harry%'
+GROUP BY MovieID;
+
+
+

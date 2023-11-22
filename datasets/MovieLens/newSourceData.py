@@ -1,19 +1,19 @@
 import mysql.connector
 
-def insert_data_into_source3(conn, fourth_table_name, source3_table_name):
-    # Replace 'FourthTable' and 'source3' with your actual table names
-   
+def insert_mock_data(conn, start_id, num_entries):
+    # Replace 'newSource_movie' with your actual table name
+    table_name = 'newSource_movie'
+
     # Generate and execute the SQL INSERT command
     insert_query = f"""
-        INSERT INTO {source3_table_name} (MovieID, Title, Genres)
-        SELECT MovieID, Title, genres
-        FROM {fourth_table_name}
+        INSERT INTO {table_name} (movieId, title, genres)
+        VALUES {', '.join(f'({start_id + i}, "Movie{str(start_id + i)[-2:]}", "comedy")' for i in range(num_entries))}
     """
-
+    
     with conn.cursor() as cursor:
         cursor.execute(insert_query)
         conn.commit()
-        print(f"Inserted data from '{fourth_table_name}' into '{source3_table_name}'.")
+        print(f"Inserted {num_entries} rows into the '{table_name}' table.")
 
 if __name__ == "__main__":
     # Update these values with your database connection details
@@ -24,13 +24,17 @@ if __name__ == "__main__":
         'database': 'iia_project'
     }
 
+    # Replace with the starting ID and the number of entries you want
+    start_id = 15151530
+    num_entries = 30
+
     # Connect to the database
     try:
         conn = mysql.connector.connect(**db_params)
         print("Connected to the database")
 
-        # Replace 'FourthTable' and 'source3' with your actual table names
-        insert_data_into_source3(conn, 'newSource_movie', 'MovieLens_movie')
+        # Insert mock data into the table
+        insert_mock_data(conn, start_id, num_entries)
 
     except mysql.connector.Error as e:
         print(f"Error: {e}")
